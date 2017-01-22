@@ -62,15 +62,18 @@ var generateFortuneCookie = function() {
 
   //get the fortune cookie text element to be able to insert text into it.
   var currentFortune=document.getElementById("fortune-cookie-text");
+  //update the previous fortunes list only after first click
+  if (currentFortune.textContent !=="Click the button to generate a saying.") {
   var previousFortune = document.createElement("LI");
+  document.getElementById("previous-fortunes-container").appendChild(previousFortune);
+  previousFortune.innerHTML=currentFortune.innerHTML;
+  }
   //get the total number of fortunes
   var fortuneCount = fortunesList.length;
   //generate a random number greater than 0 but not exceeding the number of fortunes
-  var index=Math.random() * fortuneCount; 
+  var index = Math.random() * fortuneCount; 
   index = Math.floor(index);
   //update the current fortune to reflect the generated random number
   currentFortune.innerHTML=fortunesList[index];
-  //update the previous fortunes list
-  previousFortune.innerHTML=currentFortune.innerHTML;
-  document.getElementById("previous-fortunes-container").appendChild(previousFortune);
 }
+
